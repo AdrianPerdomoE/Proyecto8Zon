@@ -8,9 +8,4 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
-  <ItemGroup>
-    <Folder Include="Model\Entities\" />
-    <Folder Include="Model\Structures\" />
-  </ItemGroup>
-
 </Project>
