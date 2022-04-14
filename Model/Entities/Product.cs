@@ -12,16 +12,16 @@ namespace Proyecto8Zon.Model.Entities
 
         public double Price;
 
-        public Structures.LinkedList<String> Features { get;}    
+        public MyLinkedList<string> Features { get;}    
        
-        public Product(string name, int price)
+        public Product(string name, double price)
         {
             Name = name;
 
             Price = price;
         }
 
-        public void AddFeature(String text)
+        public void AddFeature(string text)
         {
             Features.Add(text); 
         }

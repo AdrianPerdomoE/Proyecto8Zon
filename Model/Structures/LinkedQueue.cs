@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace Proyecto8Zon.Model.Structures
 {
-    public class LinkedQueue<T>
+    public class LinkedQueue<T> where T : class?
     {
         class Node<T>
         {
-            internal Node<T> Next;
+            internal Node<T>? Next;
 
-            internal Node<T> Before;
+            internal Node<T>? Before;
 
             internal T Obj;
             public Node(Node<T> before, Node<T> next, T obj)
@@ -23,22 +23,33 @@ namespace Proyecto8Zon.Model.Structures
             }
         }
 
-        private Node<T> First = null;
+        private Node<T>? First = null;
 
-        private Node<T> Last = null;
+        private Node<T>? Last = null;
 
-        private int Size;
+        private int Size = 0;
 
+        public override string ToString()
+        {
+            StringBuilder sb = new StringBuilder();
+            Node<T> actual = First;
+            while (actual != null)
+            {
+                sb.Append($"{actual.Obj} ");
+                actual = actual.Before;
+            }
+            return sb.ToString();
+        }
         public bool IsEmpty() { return Size == 0; }
-        public void Add(T obj) 
+        public void Add(T obj)
         {
             if (IsEmpty())
             {
-                 Last = First = new Node<T>(null,null,obj);
+                Last = First = new Node<T>(null, null, obj);
                 Size++;
                 return;
             }
-            Node<T> newNode= new Node<T>(null, Last, obj);
+            Node<T> newNode = new Node<T>(null, Last, obj);
             Last.Before = newNode;
             Last = newNode;
             Size++;
@@ -50,10 +61,10 @@ namespace Proyecto8Zon.Model.Structures
             {
                 return null;
             }
-            T  exit = First.Obj;
+            T exit = First.Obj;
             First = First.Before;
             First.Next = null;
-            Size--; 
+            Size--;
             return exit;
         }
 

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Proyecto8Zon.Model.Structures
 {
-    public class LinkedStack<T>
+    public class LinkedStack<T> where T : class?
     {
         class Node<T>
         {
@@ -23,6 +23,21 @@ namespace Proyecto8Zon.Model.Structures
         private Node<T>? Top = null;
         private int Size;
 
+        public T? Peek()
+        {
+            return Top.Obj;
+        }
+        public override string ToString()
+        {
+            StringBuilder sb = new StringBuilder();
+            Node<T> actual = Top;
+            while (actual != null)
+            {
+                sb.Append($"{actual.Obj} ");
+                actual = actual.Before;
+            }
+            return sb.ToString();
+        }
         public int GetSize()
         {
             return this.Size;
@@ -39,16 +54,18 @@ namespace Proyecto8Zon.Model.Structures
             Size++;
         }
 
-        public T? Remove() 
+        public T? Remove()
         {
-            if (this.IsEmpty()) 
-            { 
+            if (this.IsEmpty())
+            {
                 return null;
             }
             T exit = Top.Obj;
+            Node<T> actual = Top;
+            Top = Top.Before;
+            actual.Before = null;
+            Size--;
             return exit;
         }
-
-
     }
 }
