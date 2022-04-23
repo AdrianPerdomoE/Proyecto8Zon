@@ -36,8 +36,8 @@ namespace Proyecto8Zon.Model.Menus
         private void AñadirTransportador()
         {
             Console.Clear();
-            string nombre = ObtenerEntrada("Ingrese nombre del comprador");
-            string id = ObtenerEntrada("Ingrese id del comprador");
+            string nombre = ObtenerEntrada("Ingrese nombre del trasportador");
+            string id = ObtenerEntrada("Ingrese id del transportador");
             Transportador nuevoTransportador = new(nombre,id);
             bool añadirCidudades = true;
             while (añadirCidudades)
@@ -63,7 +63,7 @@ namespace Proyecto8Zon.Model.Menus
 
             if (ListaTransportadores.IsEmpty())
             {
-                Console.WriteLine("No hay compradores registrados");
+                Console.WriteLine("No hay trasportadores registrados");
                 Console.ReadLine();
 
                 return;

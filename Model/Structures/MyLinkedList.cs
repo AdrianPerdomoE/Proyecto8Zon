@@ -145,14 +145,24 @@ namespace Proyecto8Zon.Model.Structures
             {
                 Node<T> actualNode = Head;
                 Head = actualNode.Previous;
-                if(actualNode.Next != null)
+                if(Head != null)
                 {
                     Head.Next = null;
                     actualNode.Previous = null;
                     Size--;
+                    return actualNode.Obj;
                 }
                 Head = null;
                 Tail = null;
+                Size--;
+                return actualNode.Obj;
+            }
+            if (index == Size-1)
+            {
+                Node<T> actualNode = Tail;
+                Tail = actualNode.Next;
+                Tail.Previous = null;
+                actualNode.Next = null;
                 Size--;
                 return actualNode.Obj;
             }

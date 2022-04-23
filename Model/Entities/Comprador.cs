@@ -18,17 +18,19 @@ namespace Proyecto8Zon.Model.Entities
 
         public string Correo;
 
-        public Comprador(string nombre, string telefono, string id, string correo)
+        public string Ciudad;
+        public Comprador(string nombre, string telefono, string id, string correo, string ciudad)
         {
             Nombre = nombre;
             Telefono = telefono;
             Id = id;
             Correo = correo;
+            Ciudad = ciudad;
             CarritoCompra = new ShoppingCar();
         }
         public override string ToString()
         {
-            return $"Nombre:{Nombre} Id:{Id}$ Telefono: {Telefono}";
+            return $"Nombre:{Nombre} Id:{Id} Ciudad:{Ciudad} Telefono: {Telefono}";
         }
     }
 }

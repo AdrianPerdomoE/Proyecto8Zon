@@ -12,9 +12,8 @@ namespace Proyecto8Zon
         {
             MyLinkedList<Vendedor> listaVendedores = new();
             MyLinkedList<Comprador> listaCompradores = new();
-            listaCompradores.Add(new Comprador("Prueba", "123213", "111", "Correo"));
             MyLinkedList<Transportador> listaTransportadores = new();
-            MenuVendedores menuVendedores = new(listaVendedores, listaCompradores); 
+            MenuPrincipal menuPrincipal = new(listaCompradores, listaVendedores, listaTransportadores); 
         }
     }
 }

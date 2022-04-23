@@ -45,7 +45,8 @@ namespace Proyecto8Zon.Model.Menus
             string telefono = ObtenerEntrada("Ingrese telefono del comprador");
             string id = ObtenerEntrada("Ingrese id del comprador");
             string correo = ObtenerEntrada("Ingrese correo del comprador");
-            Comprador nuevoComprador = new(nombre,telefono,id,correo);
+            string ciudad = ObtenerEntrada("Ingrese ciudad del comprador");
+            Comprador nuevoComprador = new(nombre,telefono,id,correo,ciudad);
             ListaCompradores.Add(nuevoComprador);   
         }
         private void EditarComprador()
@@ -74,7 +75,7 @@ namespace Proyecto8Zon.Model.Menus
 
                 Console.WriteLine($"Items en el carrito: \n{compradorActual.CarritoCompra}");
 
-                int OpcionEdicion = ObtenerOpcionMenu("Ingrese 1 si desea cambiar el nombre del comprador\nIngrese 2 si desea cambiar el id del comprador\nIngrese 3 si desea cambiar el telefono del comprador\nIngrese 4 si desea cambiar el correo del comprador\nIngrese 5 si desea eliminar el comprador\nIngrese 6 para editar el carrito de compras\nIngrese 0 si desea salir del modo edición", 6);
+                int OpcionEdicion = ObtenerOpcionMenu("Ingrese 1 si desea cambiar el nombre del comprador\nIngrese 2 si desea cambiar el id del comprador\nIngrese 3 si desea cambiar el telefono del comprador\nIngrese 4 si desea cambiar el correo del comprador\nIngrese 5 si desea cambiar la ciudad del comprador\nIngrese 6 si desea eliminar el comprador\nIngrese 7 para editar el carrito de compras\nIngrese 0 si desea salir del modo edición", 7);
                 switch (OpcionEdicion)
                 {
                     case 0:
@@ -102,10 +103,15 @@ namespace Proyecto8Zon.Model.Menus
                         break;
                     case 5:
                         Console.Clear();
+                        string nuevaCidad = ObtenerEntrada("Ingrese la nueva del comprador");
+                        compradorActual.Ciudad = nuevaCidad;
+                        break;
+                    case 6:
+                        Console.Clear();
                         ListaCompradores.Remove(numeroComprador);
                         SeguirEditandoComprador = false;
                         break;
-                    case 6:
+                    case 7:
                         if (compradorActual.CarritoCompra.IsEmpty())
                         {
                             Console.Clear();
