@@ -13,7 +13,6 @@ namespace Proyecto8Zon.Model.Entities
         public string Nombre;
 
         public string Id;
-
         public Vendedor(string nombre, string id)
         {
             Nombre = nombre;
@@ -21,6 +20,11 @@ namespace Proyecto8Zon.Model.Entities
             Id = id;
 
             Catalogo = new Catalogo();
+        }
+
+        public override string ToString()
+        {
+            return $"{Nombre} - id: {Id} tamaño del catalogo: {Catalogo.GetSize()}";
         }
     }
 }

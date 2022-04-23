@@ -13,25 +13,25 @@ namespace Proyecto8Zon.Model.Entities
         
         private int Size = 0;
 
-
-        public void AumentarExistenciaProducto(int cantidad, string nombre)
+        public override string ToString()
         {
-            for (int i = 0; i < Size; i++)
+            StringBuilder sb = new StringBuilder();
+            sb.AppendLine("Productos del catalogo:");
+            sb.Append(Productos.ToString());
+            return sb.ToString();
+        }
+        public void AumentarExistenciaProducto(int cantidad, int index)
+        {
+            
+            Product productoMuestra = Productos.Get(index).Peek();
+            for (int j = 0; j < cantidad; j++)
             {
-                if (Productos.Get(i).Peek().Name == nombre)
+                Product productoExtra = new Product(productoMuestra.Name,productoMuestra.Price);
+                for(int k = 0; k < productoMuestra.Features.GetSize(); k++)
                 {
-                    Product productoMuestra = Productos.Get(i).Peek();
-                    for (int j = 0; j < cantidad; j++)
-                    {
-                        Product productoExtra = new Product(productoMuestra.Name,productoMuestra.Price);
-                        for(int k = 0; k < productoMuestra.Features.GetSize(); k++)
-                        {
-                            productoExtra.AddFeature(productoMuestra.Features.Get(i));
-                        }
-                        Productos.Get(i).Add(productoExtra);
-                    }
-                    return;
+                    productoExtra.AddFeature(productoMuestra.Features.Get(k));
                 }
+                Productos.Get(index).Add(productoExtra);
             }
         }
         public void IngresarProducto(Product product)
@@ -68,6 +68,23 @@ namespace Proyecto8Zon.Model.Entities
                 ProductosCatalogo.Add(Productos.Get(i).Peek());
             }
             return ProductosCatalogo;
+        }
+        
+        public int GetSize()
+        {
+            return Size;
+        }
+
+        public void VerProducto(int index)
+        {
+            var pilaProductos = Productos.Get(index);
+
+            Console.WriteLine($"Cantidad disponible: {pilaProductos.GetSize()} \nProducto:\n{pilaProductos.Peek().ToString()}");
+
+        }
+        public Product GetProduct(int index )
+        {
+           return Productos.Get(index).Peek();
         }
     }
 }

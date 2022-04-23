@@ -27,16 +27,25 @@ namespace Proyecto8Zon.Model.Structures
         {
             return Top.Obj;
         }
-        public override string ToString()
+        public string ListarPila()
         {
+
             StringBuilder sb = new StringBuilder();
             Node<T> actual = Top;
             while (actual != null)
             {
-                sb.Append($"{actual.Obj} ");
+                sb.Append($"{actual.Obj.ToString()} ");
                 actual = actual.Before;
             }
             return sb.ToString();
+        }
+        public override string ToString()
+        {
+            if (!IsEmpty())
+            {
+                return Top.Obj.ToString();
+            }
+            return "";
         }
         public int GetSize()
         {

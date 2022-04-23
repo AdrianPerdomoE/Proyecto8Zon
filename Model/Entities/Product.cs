@@ -19,12 +19,17 @@ namespace Proyecto8Zon.Model.Entities
             Name = name;
 
             Price = price;
+
+            Features = new MyLinkedList<string>();
         }
 
         public void AddFeature(string text)
         {
             Features.Add(text); 
         }
-        
+        public override string ToString()
+        {
+            return $"Nombre:{Name} precio:{Price}$ \nCaracteristicas:\n{Features.ToString()}";
+        }
     }
 }

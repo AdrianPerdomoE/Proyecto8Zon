@@ -39,10 +39,12 @@ namespace Proyecto8Zon.Model.Structures
         {
             StringBuilder sb = new StringBuilder();
             Node<T> actual = Head;
+            int counter = 0;
             while (actual != null)
             {
-                sb.Append($"{actual.Obj} ");
+                sb.AppendLine($"(# {counter})-> {actual.Obj.ToString()}.");
                 actual = actual.Previous;
+                counter++;
             }
             return sb.ToString();
         }
@@ -143,8 +145,14 @@ namespace Proyecto8Zon.Model.Structures
             {
                 Node<T> actualNode = Head;
                 Head = actualNode.Previous;
-                Head.Next = null;
-                actualNode.Previous = null;
+                if(actualNode.Next != null)
+                {
+                    Head.Next = null;
+                    actualNode.Previous = null;
+                    Size--;
+                }
+                Head = null;
+                Tail = null;
                 Size--;
                 return actualNode.Obj;
             }

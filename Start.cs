@@ -1,19 +1,20 @@
-using Proyecto8Zon.Visual;
+
+
+using Proyecto8Zon.Model.Entities;
+using Proyecto8Zon.Model.Menus;
+using Proyecto8Zon.Model.Structures;
 
 namespace Proyecto8Zon
 {
-    internal static class Start
+    public static class Start
     {
-        /// <summary>
-        ///  The main entry point for the application.
-        /// </summary>
-        [STAThread]
-        static void Main()
+        static void Main(string[] args)
         {
-            // To customize application configuration such as set high DPI settings or default font,
-            // see https://aka.ms/applicationconfiguration.
-            ApplicationConfiguration.Initialize();
-            Application.Run(new VentanaPrincipal());
+            MyLinkedList<Vendedor> listaVendedores = new();
+            MyLinkedList<Comprador> listaCompradores = new();
+            listaCompradores.Add(new Comprador("Prueba", "123213", "111", "Correo"));
+            MyLinkedList<Transportador> listaTransportadores = new();
+            MenuVendedores menuVendedores = new(listaVendedores, listaCompradores); 
         }
     }
 }

@@ -26,5 +26,9 @@ namespace Proyecto8Zon.Model.Entities
             Correo = correo;
             CarritoCompra = new ShoppingCar();
         }
+        public override string ToString()
+        {
+            return $"Nombre:{Nombre} Id:{Id}$ Telefono: {Telefono}";
+        }
     }
 }
