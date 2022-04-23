@@ -32,5 +32,14 @@ namespace Proyecto8Zon.Model.Entities
             }
             ciudades.Add(ciudad);
         }
+
+        public void EliminarCiudad(int index)
+        {
+            ciudades.Remove(index);
+        }
+        public override string ToString()
+        {
+            return $"{Nombre} - id: {Id} \nCiudades: \n{ciudades}";
+        }
     }
 }

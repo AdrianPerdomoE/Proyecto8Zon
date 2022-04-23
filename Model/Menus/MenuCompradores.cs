@@ -62,7 +62,7 @@ namespace Proyecto8Zon.Model.Menus
                 return;
             }
 
-            int numeroComprador = ObtenerOpcionMenu("Ingrese el # del vendedor que desea editar", ListaCompradores.GetSize() - 1);
+            int numeroComprador = ObtenerOpcionMenu("Ingrese el # del comprador que desea editar", ListaCompradores.GetSize() - 1);
 
                 Comprador compradorActual = ListaCompradores.Get(numeroComprador);
 
@@ -74,7 +74,7 @@ namespace Proyecto8Zon.Model.Menus
 
                 Console.WriteLine($"Items en el carrito: \n{compradorActual.CarritoCompra}");
 
-                int OpcionEdicion = ObtenerOpcionMenu("Ingrese 1 si desea cambiar el nombre del comprador\nIngrese 2 si desea cambiar el id del comprador\nIngrese 3 si desea cambiar el telefono del comprador\nIngrese 4 si desea cambiar el correo del comprador\nIngrese 5 si desea eliminar el vendedor\nIngrese 6 para editar el carrito de compras\nIngrese 0 si desea salir del modo edición", 6);
+                int OpcionEdicion = ObtenerOpcionMenu("Ingrese 1 si desea cambiar el nombre del comprador\nIngrese 2 si desea cambiar el id del comprador\nIngrese 3 si desea cambiar el telefono del comprador\nIngrese 4 si desea cambiar el correo del comprador\nIngrese 5 si desea eliminar el comprador\nIngrese 6 para editar el carrito de compras\nIngrese 0 si desea salir del modo edición", 6);
                 switch (OpcionEdicion)
                 {
                     case 0:
@@ -87,17 +87,17 @@ namespace Proyecto8Zon.Model.Menus
                         break;
                     case 2:
                         Console.Clear();
-                        string nuevoId = ObtenerEntrada("Ingrese el nuevo id del vendedor");
+                        string nuevoId = ObtenerEntrada("Ingrese el nuevo id del comprador");
                         compradorActual.Id = nuevoId;
                         break;
                     case 3:
                         Console.Clear();
-                        string nuevoTelefono = ObtenerEntrada("Ingrese el nuevo telefono del vendedor");
+                        string nuevoTelefono = ObtenerEntrada("Ingrese el nuevo telefono del comprador");
                         compradorActual.Telefono = nuevoTelefono;
                         break;
                     case 4:
                         Console.Clear();
-                        string nuevoCorreo = ObtenerEntrada("Ingrese el nuevo correo del vendedor");
+                        string nuevoCorreo = ObtenerEntrada("Ingrese el nuevo correo del comprador");
                         compradorActual. Correo = nuevoCorreo;
                         break;
                     case 5:
