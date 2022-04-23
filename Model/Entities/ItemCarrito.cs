@@ -17,5 +17,13 @@ namespace Proyecto8Zon.Model.Entities
             
             Cantidad = cantidad;
         }
+        public override string ToString()
+        {
+            return $"{Producto.Name}: {Producto.Price}$ Cantidad: {Cantidad}";
+        }
+        public double SubTotal()
+        {
+            return Cantidad * Producto.Price;
+        }
     }
 }

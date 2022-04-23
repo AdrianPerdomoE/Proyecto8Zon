@@ -65,7 +65,7 @@ namespace Proyecto8Zon.Model.Menus
 
             if (ListaVendedores.IsEmpty())
             {
-                Console.WriteLine("No hay compradores registrados");
+                Console.WriteLine("No hay vendedores registrados");
                 Console.ReadLine();
              
                 return;
