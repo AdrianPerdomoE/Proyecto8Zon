@@ -13,29 +13,43 @@ namespace Proyecto8Zon.Model.Menus
         MyLinkedList<Comprador> ListaCompradores;
         MyLinkedList<Vendedor> ListaVendedores;
         MyLinkedList<Transportador> ListaTransportadores;
-        public MenuPrincipal(MyLinkedList<Comprador> listaCompradores,MyLinkedList<Vendedor> listaVendedores, MyLinkedList<Transportador> listaTransportadores)
+        MyLinkedList<Pedido> ListaPedidos;
+        MyLinkedList<Envio> ListaEnvios;
+        public MenuPrincipal(MyLinkedList<Comprador> listaCompradores,MyLinkedList<Vendedor> listaVendedores, MyLinkedList<Transportador> listaTransportadores, MyLinkedList<Pedido> listaPedidos, MyLinkedList<Envio> listaEnvios)
         {
             ListaCompradores = listaCompradores;
             ListaVendedores = listaVendedores;
             ListaTransportadores = listaTransportadores;
+            ListaPedidos = listaPedidos;
+            ListaEnvios = listaEnvios;
             bool seguirMenuPrincipal = true;
             while (seguirMenuPrincipal)
             {
                 Console.Clear();
-                int opcionMenuPrincipal = ObtenerOpcionMenu("Ingrese 1 para ver los compradores\nIngrese 2 para ver los vendedores\nIngrese 3 para ver los transportadores\nIngrese 0 para salir de la aplicación",3);
+                int opcionMenuPrincipal = ObtenerOpcionMenu("Ingrese 1 para ver los compradores\nIngrese 2 para ver los vendedores\nIngrese 3 para ver los transportadores\nIngrese 4 para ver los pedidos\nIngrese 5 para ver los envios\nIngrese 0 para salir de la aplicación", 5);
                 switch (opcionMenuPrincipal)
                 {
                     case 0:
                         seguirMenuPrincipal=false;
                         break;
                     case 1:
-                        MenuCompradores menuCompradores = new(listaCompradores);
+                        MenuCompradores menuCompradores = new(ListaCompradores);
                         break;
                     case 2:
-                        MenuVendedores menuVendedores = new(listaVendedores, listaCompradores);
+                        MenuVendedores menuVendedores = new(ListaVendedores, ListaCompradores);
                         break;
                     case 3:
-                        MenuTransportadores menuTransportadores = new(listaTransportadores);
+                        MenuTransportadores menuTransportadores = new(ListaTransportadores);
+                        break;
+                    case 4:
+                        MenuPedidos menuPedidos = new(ListaPedidos, ListaCompradores,ListaVendedores,ListaEnvios,ListaTransportadores);
+                        break;
+                    case 5:
+                        Console.Clear();
+                        Console.WriteLine("ENVIOS");
+                        Console.WriteLine(ListaEnvios);
+                        Console.ReadLine();
+                        Console.Clear();    
                         break;
                 }
             }

@@ -13,7 +13,9 @@ namespace Proyecto8Zon
             MyLinkedList<Vendedor> listaVendedores = new();
             MyLinkedList<Comprador> listaCompradores = new();
             MyLinkedList<Transportador> listaTransportadores = new();
-            MenuPrincipal menuPrincipal = new(listaCompradores, listaVendedores, listaTransportadores); 
+            MyLinkedList<Pedido> listaPedidos = new();
+            MyLinkedList<Envio> listaEnvios = new();
+            MenuPrincipal menuPrincipal = new(listaCompradores, listaVendedores, listaTransportadores, listaPedidos, listaEnvios); 
         }
     }
 }

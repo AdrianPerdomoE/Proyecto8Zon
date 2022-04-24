@@ -36,30 +36,43 @@ namespace Proyecto8Zon.Model.Entities
         }
         public void IngresarProducto(Product product)
         {
-            for(int i = 0; i < Size; i++)
+            int index = EncontrarProducto(product);
+            if(index == -1)
             {
-               if(Productos.Get(i).Peek().Name == product.Name)
-                {
-                    Productos.Get(i).Add(product);
-                    return;
-                }
+                LinkedStack<Product> nuevaPilaProductos = new LinkedStack<Product>();
+                nuevaPilaProductos.Add(product);
+                Productos.Add(nuevaPilaProductos);
+                Size++;
+                return;
             }
-            LinkedStack<Product> nuevaPilaProductos = new LinkedStack<Product>();
-            nuevaPilaProductos.Add(product);
-            Productos.Add(nuevaPilaProductos);
-            Size++; 
+           AumentarExistenciaProducto(1, index);
         }
-        public Product SacarProducto( int index)
+        public Product? SacarProducto( int index)
         {
-            Product producto = Productos.Get(index).Remove();
-            if(Productos.Get(index).GetSize() == 0)
+            LinkedStack<Product> productos = Productos.Get(index);
+            if (productos.GetSize() == 1)
             {
-                Productos.Remove(index);
-                Size--;
+                return null;
             }
+            Product producto = productos.Remove();
             return producto;
         }
-
+        public int EncontrarProducto(Product producto)
+        {
+            int index = -1;
+            for(int i = 0; i < Productos.GetSize(); i++)
+            {
+                if(Productos.Get(i).Peek().Name == producto.Name && Productos.Get(i).Peek().Price == producto.Price && Productos.Get(i).Peek().Features.Get(0) == producto.Features.Get(0))
+                {
+                    index = i;
+                }
+            }
+            return index;
+        }
+        public bool validarExistencia(int index,int cantidad)
+        {
+           return Productos.Get(index).GetSize() - cantidad > 1;
+        }
         public MyLinkedList<Product> ProductosDelCatalogo()
         {
             MyLinkedList<Product> ProductosCatalogo = new MyLinkedList<Product>();

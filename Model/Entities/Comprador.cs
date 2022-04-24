@@ -8,7 +8,7 @@ namespace Proyecto8Zon.Model.Entities
 {
     public class Comprador
     {
-        public ShoppingCar CarritoCompra { get;}
+        public ShoppingCar CarritoCompra { get; set;}
 
         public string Nombre;
 
@@ -31,6 +31,10 @@ namespace Proyecto8Zon.Model.Entities
         public override string ToString()
         {
             return $"Nombre:{Nombre} Id:{Id} Ciudad:{Ciudad} Telefono: {Telefono}";
+        }
+        public void RenovarCarro()
+        {
+            CarritoCompra = new();
         }
     }
 }

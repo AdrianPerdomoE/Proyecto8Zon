@@ -15,7 +15,10 @@ namespace Proyecto8Zon.Model.Entities
         {
             Products = new MyLinkedList<ItemCarrito>();
         }
-
+        public ItemCarrito BuscarProducto(int index)
+        {
+            return Products.Get(index);
+        }
         public  void AñadirItem(Product producto, int cantidad)
         {
             for (int  i = 0;  i < Products.GetSize();  i++)

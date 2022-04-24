@@ -62,6 +62,14 @@ namespace Proyecto8Zon.Model.Structures
                 return null;
             }
             T exit = First.Obj;
+            if (Size == 1)
+            {
+                First = null;
+                Last = null;
+                Size--;
+                return exit;
+            }
+            
             First = First.Before;
             First.Next = null;
             Size--;
