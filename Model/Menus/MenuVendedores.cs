@@ -164,6 +164,7 @@ namespace Proyecto8Zon.Model.Menus
             {
                 Console.WriteLine("No hay productos para poder selecionar");
                 Console.ReadLine();
+                return;
 
             }
             int numeroProducto = ObtenerOpcionMenu("Ingrese # del producto que desea selecionar", vendedor.Catalogo.GetSize() - 1);

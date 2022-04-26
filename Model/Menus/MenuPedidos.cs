@@ -151,6 +151,7 @@ namespace Proyecto8Zon.Model.Menus
         }
         public void AgregarPedido()
         {
+            MyLinkedList<Comprador> ListaCompradoresDisponibles = new MyLinkedList<Comprador>();
             Console.Clear();
             if (ListaCompradores.IsEmpty())
             {
@@ -164,9 +165,12 @@ namespace Proyecto8Zon.Model.Menus
             {
                 if(!ListaCompradores.Get(i).CarritoCompra.IsEmpty())
                 {
+                    Console.Write($"# {carritosDisponibles} ");
                     carritosDisponibles++;
+                    ListaCompradoresDisponibles.Add(ListaCompradores.Get(i));
                     Console.WriteLine(ListaCompradores.Get(i));
                     Console.WriteLine(ListaCompradores.Get(i).CarritoCompra);
+                    
                 }
             }
             if(carritosDisponibles == 0)
@@ -176,13 +180,13 @@ namespace Proyecto8Zon.Model.Menus
                 Console.Clear ();
                 return;
             }
-            int carritoPedido = ObtenerOpcionMenu($"Hay {carritosDisponibles} para generar un pedido ingrese # del comprador al que le quiere generar un pedido", ListaCompradores.GetSize() - 1);
-            GenerarPedido(carritoPedido);
+            int carritoPedido = ObtenerOpcionMenu($"Hay {carritosDisponibles} para generar un pedido ingrese # del comprador al que le quiere generar un pedido", ListaCompradoresDisponibles.GetSize() - 1);
+            GenerarPedido(carritoPedido,ListaCompradoresDisponibles);
         }
 
-        private void GenerarPedido(int index)
+        private void GenerarPedido(int index, MyLinkedList<Comprador> listacompradores)
         {
-            Comprador CompradorPedido = ListaCompradores.Get(index);
+            Comprador CompradorPedido = listacompradores.Get(index);
             Pedido nuevoPedido = new(CompradorPedido, CompradorPedido.CarritoCompra);
             ListaPedidos.Add(nuevoPedido);
             Console.WriteLine("Se ha generado el pedido correctamente");

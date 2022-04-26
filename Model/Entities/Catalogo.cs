@@ -71,7 +71,7 @@ namespace Proyecto8Zon.Model.Entities
         }
         public bool validarExistencia(int index,int cantidad)
         {
-           return Productos.Get(index).GetSize() - cantidad > 1;
+           return Productos.Get(index).GetSize() - cantidad > 0;
         }
         public MyLinkedList<Product> ProductosDelCatalogo()
         {
