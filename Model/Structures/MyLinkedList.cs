@@ -157,15 +157,7 @@ namespace Proyecto8Zon.Model.Structures
                 Size--;
                 return actualNode.Obj;
             }
-            if (index == Size-1)
-            {
-                Node<T> actualNode = Tail;
-                Tail = actualNode.Next;
-                Tail.Previous = null;
-                actualNode.Next = null;
-                Size--;
-                return actualNode.Obj;
-            }
+           
             if (index == Size - 1)
             {
                 Node<T> actualNode = Tail;

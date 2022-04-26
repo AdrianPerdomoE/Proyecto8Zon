@@ -12,10 +12,10 @@ namespace Proyecto8Zon
         {
             MyLinkedList<Vendedor> listaVendedores = new();
             MyLinkedList<Comprador> listaCompradores = new();
-            MyLinkedList<Transportador> listaTransportadores = new();
+            LinkedQueue<Transportador> colaTransportadores = new();
             MyLinkedList<Pedido> listaPedidos = new();
             MyLinkedList<Envio> listaEnvios = new();
-            MenuPrincipal menuPrincipal = new(listaCompradores, listaVendedores, listaTransportadores, listaPedidos, listaEnvios); 
+            MenuPrincipal menuPrincipal = new(listaCompradores, listaVendedores, colaTransportadores, listaPedidos, listaEnvios); 
         }
     }
 }

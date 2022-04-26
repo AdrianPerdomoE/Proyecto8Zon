@@ -12,14 +12,14 @@ namespace Proyecto8Zon.Model.Menus
     {
         MyLinkedList<Comprador> ListaCompradores;
         MyLinkedList<Vendedor> ListaVendedores;
-        MyLinkedList<Transportador> ListaTransportadores;
+        LinkedQueue<Transportador> ColaTransportadores;
         MyLinkedList<Pedido> ListaPedidos;
         MyLinkedList<Envio> ListaEnvios;
-        public MenuPrincipal(MyLinkedList<Comprador> listaCompradores,MyLinkedList<Vendedor> listaVendedores, MyLinkedList<Transportador> listaTransportadores, MyLinkedList<Pedido> listaPedidos, MyLinkedList<Envio> listaEnvios)
+        public MenuPrincipal(MyLinkedList<Comprador> listaCompradores,MyLinkedList<Vendedor> listaVendedores, LinkedQueue<Transportador> colaTransportadores, MyLinkedList<Pedido> listaPedidos, MyLinkedList<Envio> listaEnvios)
         {
             ListaCompradores = listaCompradores;
             ListaVendedores = listaVendedores;
-            ListaTransportadores = listaTransportadores;
+            ColaTransportadores = colaTransportadores;
             ListaPedidos = listaPedidos;
             ListaEnvios = listaEnvios;
             bool seguirMenuPrincipal = true;
@@ -39,10 +39,10 @@ namespace Proyecto8Zon.Model.Menus
                         MenuVendedores menuVendedores = new(ListaVendedores, ListaCompradores);
                         break;
                     case 3:
-                        MenuTransportadores menuTransportadores = new(ListaTransportadores);
+                        MenuTransportadores menuTransportadores = new(ColaTransportadores);
                         break;
                     case 4:
-                        MenuPedidos menuPedidos = new(ListaPedidos, ListaCompradores,ListaVendedores,ListaEnvios,ListaTransportadores);
+                        MenuPedidos menuPedidos = new(ListaPedidos, ListaCompradores,ListaVendedores,ListaEnvios,ColaTransportadores);
                         break;
                     case 5:
                         Console.Clear();

@@ -14,14 +14,14 @@ namespace Proyecto8Zon.Model.Menus
         MyLinkedList<Comprador> ListaCompradores;
         MyLinkedList<Vendedor> ListaVendedores;
         MyLinkedList<Envio> ListaEnvios;
-        MyLinkedList<Transportador> ListaTransportadores;
-        public MenuPedidos(MyLinkedList<Pedido> listaPedidos, MyLinkedList<Comprador> listaCompradores, MyLinkedList<Vendedor> listaVendedores, MyLinkedList<Envio> listaEnvios, MyLinkedList<Transportador> listaTransportadores)
+        LinkedQueue<Transportador> ColaTransportadores;
+        public MenuPedidos(MyLinkedList<Pedido> listaPedidos, MyLinkedList<Comprador> listaCompradores, MyLinkedList<Vendedor> listaVendedores, MyLinkedList<Envio> listaEnvios, LinkedQueue<Transportador> colaTransportadores)
         {
             ListaCompradores = listaCompradores;
             ListaPedidos = listaPedidos;
             ListaVendedores = listaVendedores;
             ListaEnvios = listaEnvios;
-            ListaTransportadores = listaTransportadores;
+            ColaTransportadores = colaTransportadores;
             bool SeguirMenuPedidos = true;
             while (SeguirMenuPedidos)
             {
@@ -63,8 +63,8 @@ namespace Proyecto8Zon.Model.Menus
                 Console.Clear();
                 return;
             }
-            LinkedQueue < Transportador > colaTransportadores = ValidarTrasportador(pedidoActual);
-            if (colaTransportadores.IsEmpty())
+            Transportador  transportador = ValidarTrasportador(pedidoActual);
+            if (transportador == null)
             {
                 Console.WriteLine("No hay un trasportador disponible en su ciudad");
                 Console.ReadLine();
@@ -76,7 +76,7 @@ namespace Proyecto8Zon.Model.Menus
             {
                 return;
             }
-            Envio envio = new(colaTransportadores.Remove(),pedidoActual);
+            Envio envio = new(transportador,pedidoActual);
             for(int i = 0; i < pedidoActual.ShoppingCar.GetSize(); i++)
             {
                 AlistarEnvio(envio, pedidoActual.ShoppingCar.BuscarProducto(i));
@@ -108,22 +108,23 @@ namespace Proyecto8Zon.Model.Menus
             pedido.ConfirmarEnvio();
         }
 
-        public LinkedQueue<Transportador> ValidarTrasportador(Pedido pedido)
+        public Transportador ValidarTrasportador(Pedido pedido)
         {
-            LinkedQueue<Transportador> queue = new();
-            for(int transportador = 0; transportador < ListaTransportadores.GetSize(); transportador++)
+            
+            for(int transportador = 0; transportador < ColaTransportadores.GetSize(); transportador++)
             {
-                MyLinkedList<string> ciudades = ListaTransportadores.Get(transportador).ciudades;
+                MyLinkedList<string> ciudades = ColaTransportadores.Get(transportador).ciudades;
                 for(int ciudad = 0;ciudad < ciudades.GetSize(); ciudad++)
                 {
                     if(ciudades.Get(ciudad)  == pedido.Comprador.Ciudad)
                     {
-                        queue.Add(ListaTransportadores.Get(transportador));
-                        break;
+                        Transportador transportadorFinal = ColaTransportadores.Remove(transportador);
+                        ColaTransportadores.Add(transportadorFinal);
+                        return transportadorFinal;
                     }  
                 }
             }
-            return queue;
+            return null;
         }
         private bool ValidarExistenciaProductos(Pedido pedido)
         {

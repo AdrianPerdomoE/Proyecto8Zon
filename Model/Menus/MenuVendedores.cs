@@ -115,26 +115,26 @@ namespace Proyecto8Zon.Model.Menus
                         
         }
 
-        private void AgregarProducto(Vendedor vendedor) 
+        private void AgregarProducto(Vendedor vendedor)
         {
-            Console.Clear();    
+            Console.Clear();
             string nombre = ObtenerEntrada("Ingrese nombre del nuevo producto");
             Console.WriteLine("Ingrese precio del producto");
             double precio = ObtenerEntradaDouble();
-            while ( precio < 0)
+            while (precio < 0)
             {
                 Console.Clear();
                 Console.WriteLine("Ingrese precio del producto");
                 precio = ObtenerEntradaDouble();
-            } 
-            Product nuevoProducto = new(nombre,precio);
+            }
+            Product nuevoProducto = new(nombre, precio);
             bool añadirCaract = true;
             while (añadirCaract)
             {
                 Console.Clear();
                 string nuevaCaracteristica = ObtenerEntrada("Ingrese caracteristica para el producto");
                 nuevoProducto.AddFeature(nuevaCaracteristica);
-                int decision = ObtenerOpcionMenu("Ingrese 0 si NO desea seguir añadiendo caracteristicas al producto, caso contrario ingrese 1",1);
+                int decision = ObtenerOpcionMenu("Ingrese 0 si NO desea seguir añadiendo caracteristicas al producto, caso contrario ingrese 1", 1);
                 if (decision == 0)
                 {
                     añadirCaract = false;
@@ -142,17 +142,20 @@ namespace Proyecto8Zon.Model.Menus
             }
             Console.WriteLine("Ingrese Cantidad de productos que desea añadir");
             int cantidadProductos = ObtenerEntradaInt();
-            while(cantidadProductos < 0)
+            while (cantidadProductos < 0)
             {
                 Console.Clear();
                 Console.WriteLine("Cantidad invalidad");
                 Console.WriteLine("Ingrese Cantidad de productos que desea añadir");
                 cantidadProductos = ObtenerEntradaInt();
             }
-            for (int i = 0; i < cantidadProductos; i++)
+            vendedor.Catalogo.IngresarProducto(nuevoProducto);
+            cantidadProductos--;
+            if(cantidadProductos == 0)
             {
-                vendedor.Catalogo.IngresarProducto(nuevoProducto);
+                return;
             }
+            vendedor.Catalogo.AumentarExistenciaProducto(cantidadProductos, vendedor.Catalogo.EncontrarProducto(nuevoProducto));
            
         }
         private void SelecionarProducto(Vendedor vendedor)

@@ -23,7 +23,7 @@ namespace Proyecto8Zon.Model.Menus
                 {
                     case 1:
                         Console.Clear();
-                        int numeroProducto = ObtenerOpcionMenu("Ingrese # del producto al cual desea reducir la cantidad", Carrito.GetSize());
+                        int numeroProducto = ObtenerOpcionMenu("Ingrese # del producto al cual desea reducir la cantidad", Carrito.GetSize())-1;
                         Console.Clear();
                         Console.WriteLine("Ingrese cantidad que desea retirar");
                         int cantidad = ObtenerEntradaInt();
@@ -38,7 +38,7 @@ namespace Proyecto8Zon.Model.Menus
                         break;
                     case 2:
                         Console.Clear();
-                        int numeroProductoEliminar = ObtenerOpcionMenu("Ingrese # del producto al cual desea reducir la cantidad", Carrito.GetSize());
+                        int numeroProductoEliminar = ObtenerOpcionMenu("Ingrese # del producto al cual desea reducir la cantidad", Carrito.GetSize()-1);
                         Carrito.EliminarItem(numeroProductoEliminar);
                         break;
                     case 3:

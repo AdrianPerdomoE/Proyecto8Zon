@@ -21,6 +21,7 @@ namespace Proyecto8Zon.Model.Structures
                 Before = before;
                 Obj = obj;
             }
+
         }
 
         private Node<T>? First = null;
@@ -29,14 +30,17 @@ namespace Proyecto8Zon.Model.Structures
 
         private int Size = 0;
 
+
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
             Node<T> actual = First;
+            int counter = 0;
             while (actual != null)
             {
-                sb.Append($"{actual.Obj} ");
+                sb.Append($"#{counter} {actual.Obj}");
                 actual = actual.Before;
+                counter++;
             }
             return sb.ToString();
         }
@@ -74,6 +78,89 @@ namespace Proyecto8Zon.Model.Structures
             First.Next = null;
             Size--;
             return exit;
+        }
+        public T Get(int index)
+        {
+            if (index < 0 || index >= Size)
+            {
+                return null;
+            }
+            if (index < Size / 2)
+            {
+                Node<T> actualNode =First;
+                for (int i = 0; i < index; i++)
+                {
+                    actualNode = actualNode.Before;
+                }
+                return actualNode.Obj;
+            }
+            else
+            {
+                Node<T> actualNode = Last;
+                int newIndex = Size - index - 1;
+                for (int i = 0; i < newIndex; i++)
+                {
+                    actualNode = actualNode.Next;
+                }
+                return actualNode.Obj;
+            }
+        }
+
+        public int GetSize()
+        {
+            return Size;
+        }
+        public T Remove(int index)
+        {
+            if (IsEmpty())
+            {
+                return null;
+            }
+            if(index < 0 || index >= Size)
+            {
+                return null;
+            }
+            if (index == 0)
+            {
+                return Remove();
+            }
+            if (index == Size - 1)
+            {
+                Node<T> actualNode = Last;
+                Last = actualNode.Next;
+                Last.Before = null;
+                actualNode.Next = null;
+                Size--;
+                return actualNode.Obj;
+            }
+            if (index < Size / 2)
+            {
+                Node<T> actualNode = First;
+                for (int i = 0; i < index; i++)
+                {
+                    actualNode = actualNode.Before;
+                }
+                T exit = actualNode.Obj;
+                actualNode.Next.Before = actualNode.Before;
+                actualNode.Before.Next = actualNode.Next;
+                Size--;
+                return exit;
+            }
+            else
+            {
+                Node<T> actualNode = Last;
+                int newIndex = Size - index - 1;
+                for (int i = 0; i < newIndex; i++)
+                {
+                    actualNode = actualNode.Next;
+                }
+                T exit = actualNode.Obj;
+                actualNode.Next.Before = actualNode.Before;
+                actualNode.Before.Next = actualNode.Next;
+                Size--;
+                return exit;
+            }
+
         }
 
     }

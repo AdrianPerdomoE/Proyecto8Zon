@@ -5,18 +5,18 @@ namespace Proyecto8Zon.Model.Menus
 {
     public class MenuTransportadores: Menu
     {
-        MyLinkedList<Transportador> ListaTransportadores;
+        LinkedQueue<Transportador> ColaTransportadores;
 
-        public MenuTransportadores (MyLinkedList<Transportador> listaTransportadores)
+        public MenuTransportadores (LinkedQueue<Transportador> colaTransportadores)
         {
-            this.ListaTransportadores = listaTransportadores;
+            this.ColaTransportadores = colaTransportadores;
 
             bool seguirMenuTrasportadores = true;
 
             while (seguirMenuTrasportadores)
             {
                 Console.Clear();
-                Console.WriteLine(ListaTransportadores);
+                Console.WriteLine(ColaTransportadores);
                 int opcionMenuCompradores = ObtenerOpcionMenu("Ingresa 1 para añadir un transportador\nIngrese 2 para editar un transportador\nIngrese 0 para regresar al inicio", 2);
                 switch (opcionMenuCompradores)
                 {
@@ -53,7 +53,7 @@ namespace Proyecto8Zon.Model.Menus
                     añadirCidudades = false;
                 }
             }
-            ListaTransportadores.Add(nuevoTransportador);
+            ColaTransportadores.Add(nuevoTransportador);
         }
         private void EditarTransportador()
         {
@@ -61,7 +61,7 @@ namespace Proyecto8Zon.Model.Menus
 
             bool seguirEditandoTransportador = true;
 
-            if (ListaTransportadores.IsEmpty())
+            if (ColaTransportadores.IsEmpty())
             {
                 Console.WriteLine("No hay trasportadores registrados");
                 Console.ReadLine();
@@ -69,9 +69,9 @@ namespace Proyecto8Zon.Model.Menus
                 return;
             }
 
-            int numeroTransportador = ObtenerOpcionMenu("Ingrese el # del vendedor que desea editar", ListaTransportadores.GetSize() - 1);
+            int numeroTransportador = ObtenerOpcionMenu("Ingrese el # del vendedor que desea editar", ColaTransportadores.GetSize() - 1);
 
-            Transportador transportadorActual = ListaTransportadores.Get(numeroTransportador);
+            Transportador transportadorActual = ColaTransportadores.Get(numeroTransportador);
 
             while (seguirEditandoTransportador)
             {
@@ -109,7 +109,7 @@ namespace Proyecto8Zon.Model.Menus
                         break;
                     case 5:
                         Console.Clear();
-                        ListaTransportadores.Remove(numeroTransportador);
+                        ColaTransportadores.Remove(numeroTransportador);
                         seguirEditandoTransportador = false;
                         break;
                 }
